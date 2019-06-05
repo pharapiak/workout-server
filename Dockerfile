@@ -1,13 +1,21 @@
-FROM risingstack/alpine:3.7-v8.10.0-4.8.0
+FROM node:10-alpine
 
-ENV PORT 3001
+# Create app directory
+WORKDIR /usr/src/app
 
-EXPOSE 3001
+COPY package.json ./
 
-COPY package.json package.json
 RUN npm install
 
-COPY . .
+COPY src ./src
+COPY tsconfig.json tslint.json ./
+
 RUN npm run build
 
-CMD ["node", "dist/"]
+#tell the server what port to use
+ENV PORT 3001
+
+#and expose it outside of the Docker container
+EXPOSE 3001
+
+CMD ["node", "dist"]
