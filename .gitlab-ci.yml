@@ -1,0 +1,9 @@
+image: node:10-alpine
+
+services:
+  - mongo:latest
+
+test:
+  script:
+    - npm install
+    - npm run test
