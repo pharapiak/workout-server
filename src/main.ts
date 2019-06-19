@@ -3,9 +3,28 @@ import { NestFactory } from '@nestjs/core';
 // import swaggerUi from 'swagger-ui-express';
 // import swaggerDocument from './swagger.json';
 import { AppModule } from './app.module';
+import { ValidationPipe, INestApplication } from '@nestjs/common';
+
+
+const port = process.env.PORT || 3000;
+
+let app: INestApplication;
+
+function shutdown(requestSource): void {
+  console.log(`Got shutdown request via ${requestSource}`);
+  console.log('shutting down');
+  
+  app.close().then(() => {
+    console.log('HTTP server stopped');
+  });
+}
+
+process.on('SIGINT', () => {
+  shutdown('SIGINT');
+});
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  app = await NestFactory.create(AppModule);
 
   // const options = new DocumentBuilder()
   //   .setTitle('Workout')
@@ -17,6 +36,12 @@ async function bootstrap() {
   // const document = SwaggerModule.createDocument(app, options);
   // SwaggerModule.setup('api', app, document);
 
-  await app.listen(3000);
+  app.useGlobalPipes(new ValidationPipe());
+
+  // tslint:disable-next-line: no-console
+  console.log(`server is listening on ${port}`);
+  await app.listen(port);
 }
 bootstrap();
+
+

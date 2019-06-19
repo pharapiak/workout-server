@@ -3,23 +3,20 @@ import { Exercise } from './exercise';
 
 @Injectable()
 export class ExercisesService {
+  private readonly store: Exercise[] = [];
+  private maxId = 0;
 
-    private readonly exercises: Exercise[] = [];
-    private maxId = 0;
+  async create(exercise: Exercise): Promise<Exercise> {
+    exercise.id = (++this.maxId).toString();
+    this.store.push(exercise);
+    return exercise;
+  }
 
-    async create(exercise: Exercise): Promise<Exercise> {
+  async findAll(): Promise<Exercise[]> {
+    return this.store;
+  }
 
-        exercise.id = (++this.maxId).toString();
-        this.exercises.push(exercise);
-        return exercise;
-      }
-
-      async findAll(): Promise<Exercise[]> {
-        return this.exercises;
-      }
-
-      async findOne(id: string): Promise<Exercise> {
-        return this.exercises.find(e => e.id === id);
-      }
-
+  async findOne(id: string): Promise<Exercise> {
+    return this.store.find(e => e.id === id);
+  }
 }
