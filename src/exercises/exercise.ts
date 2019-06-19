@@ -1,4 +1,4 @@
 export interface Exercise {
-    id: string;
-    name: string;
+  id: string;
+  name: string;
 }

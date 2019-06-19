@@ -1,3 +1,6 @@
+import { IsString, IsInt } from 'class-validator';
+
 export class CreateEquipmentDto {
-    readonly name: string;
+  @IsString()
+  readonly name: string;
 }
