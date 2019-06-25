@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workout-server-deploy
+  labels:
+    app: workout-server
+spec:
+  replicas: 2
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: workout-server
+  template:
+    metadata:
+      labels:
+        app: workout-server
+    spec:
+      containers:
+        - name: workout-server
+          image: pharapiak/workout-server-node:v2
+          ports:
+          - containerPort: 3000
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "200m"
+            limits:
+              memory: "64Mi"
+              cpu: "250m"
+
+
+
+
