@@ -1,5 +1,0 @@
-workout:
-  build: .
-  command: echo 'ready'
-  volumes:
-    - .:/home/src/app
