@@ -2,7 +2,7 @@ repo_name: pharapiak/workout-server
 report_id: d10d2e372b8a6c6c71cdfb5e269590df
 version: 0.1
 repo_type: Public
-timestamp: '2024-01-05T09:09:38+00:00'
+timestamp: '2024-02-29T18:19:15+00:00'
 requested_by: pharapiak
 provider: github
 branch: master
@@ -125,7 +125,7 @@ tools:
   last_updated_by: Paul Harapiak
   last_updated_on: 2019-06-03 16:18:06.000000000 Z
 - name: Prettier
-  description: 'Prettier is an opinionated code formatter. '
+  description: Prettier is an opinionated code formatter.
   website_url: https://prettier.io/
   version: 1.18.2
   license: MIT
@@ -139,7 +139,7 @@ tools:
   last_updated_by: Paul Harapiak
   last_updated_on: 2019-06-19 21:21:24.000000000 Z
 - name: SuperTest
-  description: 'A library for testing node.js HTTP servers '
+  description: A library for testing node.js HTTP servers
   website_url: https://www.npmjs.com/package/supertest
   version: 4.0.2
   license: MIT
